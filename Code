@@ -1,0 +1,29 @@
+void reverseStack(stack<int> &input, stack<int> &extra) {
+    //Write your code here
+     if(input.size()==0 || input.size()==1)  //Base Case
+    {
+        return;
+    }
+    
+    int x=input.top();   //Taking top element in integer
+    input.pop();         //Deleting top element
+    reverseStack(input,extra);   /*recursion call & assuming that it'll reverse our stack. 
+    we have to do further process to insert that x at the bottom*/
+    
+    /* Let assume that the list is reversed and we have to copy that list
+    to extra stack so that we can insert our x at the bottom*/
+    while(input.size()!=0)
+    {
+        extra.push(input.top());
+        input.pop();
+    }
+    input.push(x);
+    
+    /* Now copy that element again in input stack as per question*/
+    while(extra.size()!=0)
+    {
+        input.push(extra.top());
+        extra.pop();
+    }
+
+}
